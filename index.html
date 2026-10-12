@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Claims Verifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div id="app-container" class="glass-panel">
+        <!-- Home/Upload Screen -->
+        <section id="home-screen" class="screen active">
+            <header class="app-header">
+                <div class="brand">Scanner<span>AI</span></div>
+            </header>
+            <main class="home-main">
+                <div class="hero">
+                    <div class="sparkle">✦</div>
+                    <h1 class="gradient-text">Intelligent Claim Verification</h1>
+                    <p>Upload medical bills or documents. Let our AI extract, verify, and format the data instantly.</p>
+                </div>
+                <input type="file" id="file-input" accept="image/*, application/pdf" style="display: none;" />
+                <button id="btn-upload" class="btn-glow">
+                    <span class="icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </span>
+                    Upload Document
+                </button>
+            </main>
+        </section>
+
+        <!-- Preview Screen -->
+        <section id="preview-screen" class="screen hidden">
+            <header class="app-header">
+                <div class="brand">Scanner<span>AI</span></div>
+            </header>
+            <main class="preview-main">
+                <div class="pane-header">DOCUMENT PREVIEW</div>
+                <div id="preview-media-container" class="media-box glass-card"></div>
+                <div class="actions-row mt-24">
+                    <button id="btn-retake" class="btn-outline">Retake</button>
+                    <button id="btn-confirm-upload" class="btn-glow">Analyze Document</button>
+                </div>
+            </main>
+        </section>
+
+        <!-- Processing Screen -->
+        <section id="processing-screen" class="screen hidden">
+            <main class="processing-main">
+                <div class="pulse-ring">
+                    <div class="core"></div>
+                </div>
+                <h2 id="dynamic-text" class="gradient-text">Initializing AI Model...</h2>
+                <p class="sub-text">Extracting structured data and evaluating confidence.</p>
+            </main>
+        </section>
+
+        <!-- Review Screen -->
+        <section id="review-screen" class="screen hidden">
+            <header class="app-header">
+                <div class="brand">Scanner<span>AI</span></div>
+                <div class="top-stats glass-card">
+                    <div class="stat-item">
+                        <span class="label">Status</span>
+                        <span class="value text-warning">Pending Review</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="label">Model</span>
+                        <span class="value">MedVision v2.1</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="label">Avg Confidence</span>
+                        <span class="value text-success">85%</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="review-main">
+                <div class="split-layout">
+                    <!-- Left -->
+                    <div class="left-pane">
+                        <div class="pane-header">SOURCE DOCUMENT</div>
+                        <div class="document-container glass-card">
+                            <div id="review-media-container" class="media-box inner-shadow"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="right-pane">
+                        <div class="workspace-intro">
+                            <h3>Verification Workspace</h3>
+                            <p>Verify extracted details against the source document.</p>
+                        </div>
+                        <form id="extraction-form" class="ai-form"></form>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="review-footer glass-card">
+                <div class="footer-primary">
+                    <div class="total-field">
+                        <span class="label">Total Amount (₹)</span>
+                        <input type="text" id="summary-total" value="850">
+                    </div>
+                    <div class="actions">
+                        <button id="btn-reset" class="btn-ghost">Reset</button>
+                        <button id="btn-save-export" class="btn-glow">Approve & Save</button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Success Screen -->
+        <section id="success-screen" class="screen hidden">
+            <main class="success-main">
+                <div class="success-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h2 class="gradient-text">Verification Complete</h2>
+                <p>Data successfully committed to FHIR records.</p>
+                <button id="btn-home" class="btn-glow mt-24">Process Another Document</button>
+            </main>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
